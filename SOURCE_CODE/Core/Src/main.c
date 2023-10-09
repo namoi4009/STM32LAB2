@@ -274,7 +274,7 @@ int main(void)
   int index_led_matrix = 0;
   uint16_t COL [8] = {ENM0_Pin, ENM1_Pin, ENM2_Pin, ENM3_Pin, ENM4_Pin, ENM5_Pin, ENM6_Pin, ENM7_Pin};
   uint16_t ROW [8] = {ROW0_Pin, ROW1_Pin, ROW2_Pin, ROW3_Pin, ROW4_Pin, ROW5_Pin, ROW6_Pin, ROW7_Pin};
-  uint8_t matrix_buffer[8] = {0x00, 0x00, 0xFE, 0x11, 0x11, 0xFE, 0x00, 0x00};
+  uint8_t matrix_buffer[8] = {0x00,0xFC,0x12,0x11,0x11,0x12,0xFC,0x00};
 
   void displayLEDMatrix (uint8_t index)
   {
@@ -289,17 +289,13 @@ int main(void)
   {
 	uint8_t firstBit = matrix_buffer[0];
 	uint8_t lastBit = matrix_buffer[MAX_LED_MATRIX];
-	switch (mode)
+	if (mode == 0)
 	{
-	case 0:
-	  for (int i = 0; i < MAX_LED_MATRIX; i++)
-	  {
-		  matrix_buffer[i] = matrix_buffer[i+1];
-	  }
-	  matrix_buffer[MAX_LED_MATRIX - 1] = firstBit;
-	  break;
-	default:
-	  break;
+		for (int i = 0; i < MAX_LED_MATRIX; i++)
+		{
+			matrix_buffer[i] = matrix_buffer[i + 1];
+		}
+		matrix_buffer[MAX_LED_MATRIX - 1] = firstBit;
 	}
   }
 

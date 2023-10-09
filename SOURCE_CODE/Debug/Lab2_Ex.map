@@ -2223,11 +2223,11 @@ LOAD c:/st/stm32cubeide_1.7.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.exte
                 0x00000000080007a0       0x30 ./Core/Src/main.o
  .text.displayLEDMatrix.6019
                 0x00000000080007d0       0x5c ./Core/Src/main.o
- .text.clearLEDMatrix.6038
+ .text.clearLEDMatrix.6035
                 0x000000000800082c       0x5c ./Core/Src/main.o
- .text.updateLEDMatrix.6045
+ .text.updateLEDMatrix.6042
                 0x0000000008000888       0x54 ./Core/Src/main.o
- .text.updateClockBuffer.6050
+ .text.updateClockBuffer.6047
                 0x00000000080008dc       0x70 ./Core/Src/main.o
  .text.SystemClock_Config
                 0x000000000800094c       0x76 ./Core/Src/main.o

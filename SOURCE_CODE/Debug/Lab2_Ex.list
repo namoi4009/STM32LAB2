@@ -623,7 +623,7 @@ int main(void)
  8000546:	f107 0430 	add.w	r4, r7, #48	; 0x30
  800054a:	cb0f      	ldmia	r3, {r0, r1, r2, r3}
  800054c:	e884 000f 	stmia.w	r4, {r0, r1, r2, r3}
-  uint8_t matrix_buffer[8] = {0x00, 0x00, 0xFE, 0x11, 0x11, 0xFE, 0x00, 0x00};
+  uint8_t matrix_buffer[8] = {0x00,0xFC,0x12,0x11,0x11,0x12,0xFC,0x00};
  8000550:	4a46      	ldr	r2, [pc, #280]	; (800066c <main+0x1b8>)
  8000552:	f107 0340 	add.w	r3, r7, #64	; 0x40
  8000556:	e892 0003 	ldmia.w	r2, {r0, r1}
@@ -660,7 +660,7 @@ int main(void)
   updateClockBuffer();
  8000582:	1d3b      	adds	r3, r7, #4
  8000584:	469c      	mov	ip, r3
- 8000586:	f000 f9a9 	bl	80008dc <updateClockBuffer.6050>
+ 8000586:	f000 f9a9 	bl	80008dc <updateClockBuffer.6047>
   update7SEG(0);
  800058a:	1d3b      	adds	r3, r7, #4
  800058c:	469c      	mov	ip, r3
@@ -674,7 +674,7 @@ int main(void)
  8000598:	1d3b      	adds	r3, r7, #4
  800059a:	469c      	mov	ip, r3
  800059c:	6d78      	ldr	r0, [r7, #84]	; 0x54
- 800059e:	f000 f973 	bl	8000888 <updateLEDMatrix.6045>
+ 800059e:	f000 f973 	bl	8000888 <updateLEDMatrix.6042>
   while (1)
   {
 	  if (timer1_flag == 1)
@@ -773,7 +773,7 @@ int main(void)
 		  updateClockBuffer();
  8000626:	1d3b      	adds	r3, r7, #4
  8000628:	469c      	mov	ip, r3
- 800062a:	f000 f957 	bl	80008dc <updateClockBuffer.6050>
+ 800062a:	f000 f957 	bl	80008dc <updateClockBuffer.6047>
 	  }
 	  if (timer4_flag == 1)
  800062e:	4b14      	ldr	r3, [pc, #80]	; (8000680 <main+0x1cc>)
@@ -791,7 +791,7 @@ int main(void)
  8000642:	1d3a      	adds	r2, r7, #4
  8000644:	4694      	mov	ip, r2
  8000646:	4618      	mov	r0, r3
- 8000648:	f000 f91e 	bl	8000888 <updateLEDMatrix.6045>
+ 8000648:	f000 f91e 	bl	8000888 <updateLEDMatrix.6042>
 		  if (i > 7) i = 0;
  800064c:	6d7b      	ldr	r3, [r7, #84]	; 0x54
  800064e:	2b07      	cmp	r3, #7
@@ -1022,7 +1022,7 @@ int main(void)
  8000826:	bf00      	nop
  8000828:	40010c00 	.word	0x40010c00
 
-0800082c <clearLEDMatrix.6038>:
+0800082c <clearLEDMatrix.6035>:
   {
  800082c:	b590      	push	{r4, r7, lr}
  800082e:	b085      	sub	sp, #20
@@ -1032,7 +1032,7 @@ int main(void)
 	for (int i = 0; i < MAX_LED_MATRIX; i++)
  8000838:	2300      	movs	r3, #0
  800083a:	60fb      	str	r3, [r7, #12]
- 800083c:	e016      	b.n	800086c <clearLEDMatrix.6038+0x40>
+ 800083c:	e016      	b.n	800086c <clearLEDMatrix.6035+0x40>
 	  HAL_GPIO_WritePin(GPIOA, COL[i], SET);
  800083e:	68fb      	ldr	r3, [r7, #12]
  8000840:	330c      	adds	r3, #12
@@ -1041,7 +1041,7 @@ int main(void)
  8000846:	889b      	ldrh	r3, [r3, #4]
  8000848:	2201      	movs	r2, #1
  800084a:	4619      	mov	r1, r3
- 800084c:	480c      	ldr	r0, [pc, #48]	; (8000880 <clearLEDMatrix.6038+0x54>)
+ 800084c:	480c      	ldr	r0, [pc, #48]	; (8000880 <clearLEDMatrix.6035+0x54>)
  800084e:	f000 fdc3 	bl	80013d8 <HAL_GPIO_WritePin>
 	  HAL_GPIO_WritePin(GPIOB, ROW[i], SET);
  8000852:	68fb      	ldr	r3, [r7, #12]
@@ -1051,7 +1051,7 @@ int main(void)
  800085a:	889b      	ldrh	r3, [r3, #4]
  800085c:	2201      	movs	r2, #1
  800085e:	4619      	mov	r1, r3
- 8000860:	4808      	ldr	r0, [pc, #32]	; (8000884 <clearLEDMatrix.6038+0x58>)
+ 8000860:	4808      	ldr	r0, [pc, #32]	; (8000884 <clearLEDMatrix.6035+0x58>)
  8000862:	f000 fdb9 	bl	80013d8 <HAL_GPIO_WritePin>
 	for (int i = 0; i < MAX_LED_MATRIX; i++)
  8000866:	68fb      	ldr	r3, [r7, #12]
@@ -1060,7 +1060,7 @@ int main(void)
  800086c:	68a3      	ldr	r3, [r4, #8]
  800086e:	68fa      	ldr	r2, [r7, #12]
  8000870:	429a      	cmp	r2, r3
- 8000872:	dbe4      	blt.n	800083e <clearLEDMatrix.6038+0x12>
+ 8000872:	dbe4      	blt.n	800083e <clearLEDMatrix.6035+0x12>
   }
  8000874:	bf00      	nop
  8000876:	bf00      	nop
@@ -1071,7 +1071,7 @@ int main(void)
  8000880:	40010800 	.word	0x40010800
  8000884:	40010c00 	.word	0x40010c00
 
-08000888 <updateLEDMatrix.6045>:
+08000888 <updateLEDMatrix.6042>:
   {
  8000888:	b590      	push	{r4, r7, lr}
  800088a:	b083      	sub	sp, #12
@@ -1081,7 +1081,7 @@ int main(void)
  8000892:	f8c7 c000 	str.w	ip, [r7]
 	clearLEDMatrix();
  8000896:	46a4      	mov	ip, r4
- 8000898:	f7ff ffc8 	bl	800082c <clearLEDMatrix.6038>
+ 8000898:	f7ff ffc8 	bl	800082c <clearLEDMatrix.6035>
 	index %= MAX_LED_MATRIX;
  800089c:	68a2      	ldr	r2, [r4, #8]
  800089e:	687b      	ldr	r3, [r7, #4]
@@ -1097,7 +1097,7 @@ int main(void)
  80008b4:	889b      	ldrh	r3, [r3, #4]
  80008b6:	2200      	movs	r2, #0
  80008b8:	4619      	mov	r1, r3
- 80008ba:	4807      	ldr	r0, [pc, #28]	; (80008d8 <updateLEDMatrix.6045+0x50>)
+ 80008ba:	4807      	ldr	r0, [pc, #28]	; (80008d8 <updateLEDMatrix.6042+0x50>)
  80008bc:	f000 fd8c 	bl	80013d8 <HAL_GPIO_WritePin>
 	displayLEDMatrix(matrix_buffer[index]);
  80008c0:	687b      	ldr	r3, [r7, #4]
@@ -1114,7 +1114,7 @@ int main(void)
  80008d6:	bd90      	pop	{r4, r7, pc}
  80008d8:	40010800 	.word	0x40010800
 
-080008dc <updateClockBuffer.6050>:
+080008dc <updateClockBuffer.6047>:
   {
  80008dc:	b480      	push	{r7}
  80008de:	b083      	sub	sp, #12
@@ -1123,7 +1123,7 @@ int main(void)
  80008e4:	f8c7 c004 	str.w	ip, [r7, #4]
 	  led_buffer[0] = hour / 10;
  80008e8:	685a      	ldr	r2, [r3, #4]
- 80008ea:	4917      	ldr	r1, [pc, #92]	; (8000948 <updateClockBuffer.6050+0x6c>)
+ 80008ea:	4917      	ldr	r1, [pc, #92]	; (8000948 <updateClockBuffer.6047+0x6c>)
  80008ec:	fb81 0102 	smull	r0, r1, r1, r2
  80008f0:	1089      	asrs	r1, r1, #2
  80008f2:	17d2      	asrs	r2, r2, #31
@@ -1131,7 +1131,7 @@ int main(void)
  80008f6:	60da      	str	r2, [r3, #12]
 	  led_buffer[1] = hour % 10;
  80008f8:	6858      	ldr	r0, [r3, #4]
- 80008fa:	4a13      	ldr	r2, [pc, #76]	; (8000948 <updateClockBuffer.6050+0x6c>)
+ 80008fa:	4a13      	ldr	r2, [pc, #76]	; (8000948 <updateClockBuffer.6047+0x6c>)
  80008fc:	fb82 1200 	smull	r1, r2, r2, r0
  8000900:	1091      	asrs	r1, r2, #2
  8000902:	17c2      	asrs	r2, r0, #31
@@ -1144,7 +1144,7 @@ int main(void)
  8000910:	6119      	str	r1, [r3, #16]
 	  led_buffer[2] = minute / 10;
  8000912:	681a      	ldr	r2, [r3, #0]
- 8000914:	490c      	ldr	r1, [pc, #48]	; (8000948 <updateClockBuffer.6050+0x6c>)
+ 8000914:	490c      	ldr	r1, [pc, #48]	; (8000948 <updateClockBuffer.6047+0x6c>)
  8000916:	fb81 0102 	smull	r0, r1, r1, r2
  800091a:	1089      	asrs	r1, r1, #2
  800091c:	17d2      	asrs	r2, r2, #31
@@ -1152,7 +1152,7 @@ int main(void)
  8000920:	615a      	str	r2, [r3, #20]
 	  led_buffer[3] = minute % 10;
  8000922:	6818      	ldr	r0, [r3, #0]
- 8000924:	4a08      	ldr	r2, [pc, #32]	; (8000948 <updateClockBuffer.6050+0x6c>)
+ 8000924:	4a08      	ldr	r2, [pc, #32]	; (8000948 <updateClockBuffer.6047+0x6c>)
  8000926:	fb82 1200 	smull	r1, r2, r2, r0
  800092a:	1091      	asrs	r1, r2, #2
  800092c:	17c2      	asrs	r2, r0, #31

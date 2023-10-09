@@ -56,7 +56,25 @@ static void MX_TIM2_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+int timer0_counter = 0;
+int timer0_flag = 0;
+int TIME_CYCLE = 10;
+void setTimer0(int duration)
+{
+	timer0_counter = duration / TIME_CYCLE;
+	timer0_flag = 0;
+}
+void timer_run()
+{
+	if (timer0_counter > 0)
+	{
+		timer0_counter--;
+		if (timer0_counter <= 0)
+		{
+			timer0_flag = 1;
+		}
+	}
+}
 /* USER CODE END 0 */
 
 /**
@@ -260,24 +278,14 @@ int main(void)
 	  led_buffer[2] = minute / 10;
 	  led_buffer[3] = minute % 10;
   }
+
+  setTimer0(1000);
   while (1)
   {
 	  if (timer1_flag == 1)
 	  {
-		  setTimer1(100);
-		  //TODO
 		  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
-		  HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
-	  }
-	  if (timer2_flag == 1)
-	  {
-		  setTimer2(50);
-		  //TODO
-		  if (index_led > 3)
-		  {
-			  index_led = 0;
-		  }
-		  update7SEG(index_led++);
+		  setTimer1(2000);
 	  }
     /* USER CODE END WHILE */
 

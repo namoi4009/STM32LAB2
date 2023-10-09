@@ -610,8 +610,8 @@ int main(void)
   setTimer1(100);
  800052e:	2064      	movs	r0, #100	; 0x64
  8000530:	f000 f9ca 	bl	80008c8 <setTimer1>
-  setTimer2(50);
- 8000534:	2032      	movs	r0, #50	; 0x32
+  setTimer2(25);
+ 8000534:	2019      	movs	r0, #25
  8000536:	f000 f9db 	bl	80008f0 <setTimer2>
   int status = 0;
  800053a:	2300      	movs	r3, #0

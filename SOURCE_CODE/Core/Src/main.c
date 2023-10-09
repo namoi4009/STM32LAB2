@@ -253,7 +253,7 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   setTimer1(100);
-  setTimer2(50);
+  setTimer2(25);
   int status = 0;
   state(status);
   while (1)
